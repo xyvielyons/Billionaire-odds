@@ -31,7 +31,7 @@ export default function RootLayout({
       >
         <HeroClientProvider>
           {children}
-          <Toaster />
+          <Toaster richColors/>
         </HeroClientProvider>
       </body>
     </html>

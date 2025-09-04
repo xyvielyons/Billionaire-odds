@@ -26,3 +26,8 @@ export const signUpSchema = z.object({
   //pinpoints where the error should be shown
   path:["confirmPassword"]
 })
+export const signInSchema = z.object({
+  email:getEmailSchema(),
+  password:getPasswordSchema("password"),
+
+})

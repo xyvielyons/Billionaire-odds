@@ -1,6 +1,4 @@
-import { logo } from '@/public/images';
 import React from 'react'
-import Image from 'next/image';
 
 const AuthLayout = ({
     children,
