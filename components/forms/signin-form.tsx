@@ -24,6 +24,7 @@ import { useState } from "react";
 import { toast } from "sonner"
 import Image from "next/image";
 import { logo } from "@/public/images";
+import Socials from "../globals/Socials";
 export default function SignIn() {
 	const [pending, setPending] = useState(false);
 	const router = useRouter();
@@ -83,7 +84,9 @@ export default function SignIn() {
 						</div>
 						<h1 className="text-2xl font-bold text-gray-800 dark:text-gray-50">Welcome Back 😃</h1>
 						<p className="text-gray-600 text-sm font-normal dark:text-gray-200">Please enter your registered email and password to sign in.</p>
-
+						<div className="mt-2">
+							<Socials></Socials>
+						</div>
 					</CardTitle>
 				</CardHeader>
 				<CardContent>
