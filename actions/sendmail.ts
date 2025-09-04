@@ -31,7 +31,7 @@ export async function sendEmail({
 const htmlContent = `
 <div style="background: #f9f9f9; padding: 20px; text-align: center; border-radius: 10px;">
   <img src="https://drive.google.com/uc?export=view&id=1r56Ixs8n9QMXGYZ_3fzaB3onsZYyRfQB"
-       alt="JengaScheme Logo"
+       alt="Billionaire odds"
        style="max-width: 100%; height: auto; margin: 20px auto; display: block; border-radius: 5px;">
   <p style="color: #444; font-size: 18px; font-weight: 500; margin: 15px 0;">
     🎉 Hurrah! You got the email!

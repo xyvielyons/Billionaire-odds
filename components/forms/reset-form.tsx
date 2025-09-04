@@ -64,6 +64,7 @@ export default function ResetPassword() {
 						
                     })
 					reset();
+					router.push('/sign-in')
 				},
 			//if we encountered an error we show an error in the console 
 			//and we show a toast describing the error
