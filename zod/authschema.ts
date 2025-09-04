@@ -26,6 +26,15 @@ export const signUpSchema = z.object({
   //pinpoints where the error should be shown
   path:["confirmPassword"]
 })
+export const resetPasswordSchema = z.object({
+  password:getPasswordSchema("password"),
+  confirmPassword:getPasswordSchema("confirmPassword")
+
+}).refine((data)=>data.password === data.confirmPassword,{
+  message:"passwords dont match",
+  //pinpoints where the error should be shown
+  path:["confirmPassword"]
+})
 
 export const signInSchema = z.object({
   email:getEmailSchema(),
