@@ -9,7 +9,7 @@ const MainLayout = ({
     children: React.ReactNode;
   }>) => {
   return (
-    <div className=''>
+    <div className='dark:bg-[#151515] h-screen'>
       <MainNavbar></MainNavbar>
       <div className="">
         {children}

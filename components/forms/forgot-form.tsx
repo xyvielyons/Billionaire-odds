@@ -81,10 +81,10 @@ export default function ForgotPassword() {
 				<CardHeader>
 					<CardTitle className="">
 						<div className="mb-2 cursor-pointer" onClick={()=>router.push('/')}>
-							<Image src={logo} alt="billionare logo" width={180} height={180}></Image>
+							<Image src={logo} alt="billionare logo" width={180} height={180} className="dark:invert"></Image>
 						</div>
-						<h1 className="text-2xl font-bold text-gray-800">Forgot Password 😩</h1>
-						<p className="text-gray-600 text-sm font-normal">To recover your account please enter your registered email address.</p>
+						<h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Forgot Password 😩</h1>
+						<p className="text-gray-600 text-sm font-normal dark:text-gray-300">To recover your account please enter your registered email address.</p>
 
 					</CardTitle>
 				</CardHeader>
@@ -111,7 +111,7 @@ export default function ForgotPassword() {
 						</form>
 					</Form>
 					<div className="mt-4 text-center text-sm">
-						<p className="text-gray-600 hover:underline cursor-pointer hover:text-green-950 active:text-green-950" onClick={() => router.push('/sign-in')}>
+						<p className="text-gray-600 hover:underline cursor-pointer hover:text-green-950 active:text-green-950 dark:text-green-300" onClick={() => router.push('/sign-in')}>
 							have an account? Sign in
 						</p>
 					</div>

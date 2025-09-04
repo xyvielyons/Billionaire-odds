@@ -89,7 +89,7 @@ export default function ResetPassword() {
                 <CardHeader>
                   <CardTitle className="text-3xl font-bold text-center text-gray-800">
                   <div className="mb-2 cursor-pointer" onClick={()=>router.push('/')}>
-							<Image src={logo} alt="billionare logo" width={180} height={180}></Image>
+							<Image src={logo} alt="billionare logo" width={180} height={180} className="dark:invert"></Image>
 						</div>
                     Invalid Reset Link
                   </CardTitle>
@@ -113,10 +113,10 @@ export default function ResetPassword() {
 				<CardHeader>
 					<CardTitle className="">
 						<div className="mb-2 cursor-pointer" onClick={()=>router.push('/')}>
-							<Image src={logo} alt="billionare logo" width={180} height={180}></Image>
+							<Image src={logo} alt="billionare logo" width={180} height={180} className="dark:invert"></Image>
 						</div>
-						<h1 className="text-2xl font-bold text-gray-800">Reset Password 🤓</h1>
-						<p className="text-gray-600 text-sm font-normal">Please enter your new password </p>
+						<h1 className="text-2xl font-bold text-gray-800 dark:text-gray-200">Reset Password 🤓</h1>
+						<p className="text-gray-600 text-sm font-normal dark:text-gray-300">Please enter your new password </p>
 
 					</CardTitle>
 				</CardHeader>

@@ -84,10 +84,10 @@ export default function SignUp() {
 				<CardHeader>
 					<CardTitle className="">
 						<div className="mb-2 cursor-pointer" onClick={()=>router.push('/')}>
-							<Image src={logo} alt="billionare logo" width={180} height={180}></Image>
+							<Image src={logo} alt="billionare logo" width={180} height={180} className="dark:invert"></Image>
 						</div>
-						<h1 className="text-2xl font-bold text-gray-800">Create account 🔑</h1>
-						<p className="text-gray-600 text-sm font-normal">Fill in the details to create a new superadmin account. Only trusted personnel should be given this role.</p>
+						<h1 className="text-2xl font-bold text-gray-800 dark:text-gray-50">Create account 🔑</h1>
+						<p className="text-gray-600 text-sm font-normal dark:text-gray-200">Fill in the details to create a new superadmin account. Only trusted personnel should be given this role.</p>
 
 					</CardTitle>
 				</CardHeader>
@@ -152,7 +152,7 @@ export default function SignUp() {
 						</form>
 					</Form>
 					<div className="mt-4 text-center text-sm">
-						<p className="text-gray-600 hover:underline cursor-pointer hover:text-green-950 active:text-green-950" onClick={() => router.push('/sign-in')}>
+						<p className="text-gray-600 hover:underline cursor-pointer hover:text-green-950 active:text-green-950 dark:text-green-100" onClick={() => router.push('/sign-in')}>
 							Already have an account? Sign in
 						</p>
 					</div>

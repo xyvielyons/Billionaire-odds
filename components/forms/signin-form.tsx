@@ -79,10 +79,10 @@ export default function SignIn() {
 				<CardHeader>
 					<CardTitle className="">
 						<div className="mb-2 cursor-pointer" onClick={()=>router.push('/')}>
-							<Image src={logo} alt="billionare logo" width={180} height={180}></Image>
+							<Image src={logo} alt="billionare logo" width={180} height={180} className="dark:invert"></Image>
 						</div>
-						<h1 className="text-2xl font-bold text-gray-800">Welcome Back 😃</h1>
-						<p className="text-gray-600 text-sm font-normal">Please enter your registered email and password to sign in.</p>
+						<h1 className="text-2xl font-bold text-gray-800 dark:text-gray-50">Welcome Back 😃</h1>
+						<p className="text-gray-600 text-sm font-normal dark:text-gray-200">Please enter your registered email and password to sign in.</p>
 
 					</CardTitle>
 				</CardHeader>
@@ -117,7 +117,7 @@ export default function SignIn() {
 						)}
 						/>
 						
-                        <p className="text-gray-600 flex justify-end text-sm hover:underline cursor-pointer hover:text-green-950 active:text-green-950" onClick={() => router.push('/forgot-password')}>
+                        <p className="text-gray-600 flex justify-end text-sm hover:underline cursor-pointer hover:text-green-950 active:text-green-950 dark:text-green-300" onClick={() => router.push('/forgot-password')}>
 							forgot my password?
 						</p>
 							{/* <LoadingButton pending={pending}>Sign up</LoadingButton> */}
@@ -125,7 +125,7 @@ export default function SignIn() {
 						</form>
 					</Form>
 					<div className="mt-4 text-center text-sm">
-						<p className="text-gray-600 hover:underline cursor-pointer hover:text-green-950 active:text-green-950" onClick={() => router.push('/sign-up')}>
+						<p className="text-gray-600 hover:underline cursor-pointer hover:text-green-950 active:text-green-950 dark:text-green-300" onClick={() => router.push('/sign-up')}>
 							Dont have an account? Sign up
 						</p>
 					</div>

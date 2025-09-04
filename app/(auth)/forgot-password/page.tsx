@@ -3,7 +3,9 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div className='bg-[radial-gradient(50%_50%_at_50%_50%,_#02A95D_0%,_#FFFFFF_100%)] flex items-center justify-center h-screen'>
+    <div className='flex items-center justify-center h-screen
+    bg-[radial-gradient(50%_50%_at_50%_50%,#02A95D_0%,#FFFFFF_100%)]
+    dark:bg-[radial-gradient(50%_50%_at_50%_50%,#02A95D_0%,#000000_100%)]'>
         <ForgotPassword></ForgotPassword>
     </div>
   )
