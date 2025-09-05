@@ -3,6 +3,11 @@ import { betterAuth,BetterAuthOptions } from "better-auth";
 import {prismaAdapter} from 'better-auth/adapters/prisma'
 import prisma from "./lib/prisma";
 import { sendEmail } from "./actions/sendmail";
+
+export interface MyAuthFields {
+    role: string;
+}
+
 export const auth = betterAuth({
     database:prismaAdapter(prisma,{ 
         provider:"mongodb"
@@ -46,6 +51,13 @@ export const auth = betterAuth({
     },
     advanced:{
         cookiePrefix:"billionaireodds"
+    },
+    user:{
+        additionalFields:{
+            role:{
+                type:"string"
+            }
+        }
     }
 }satisfies BetterAuthOptions)
 export type Session = typeof auth.$Infer.Session;

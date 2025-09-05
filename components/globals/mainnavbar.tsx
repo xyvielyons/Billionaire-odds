@@ -19,7 +19,7 @@ import { toast } from 'sonner'
 const MainNavbar = () => {
     const router = useRouter()
     const [pending,setPending] = useState(false);
-    const {data:session} = authClient.useSession();
+    const {data:session}:{data:any} = authClient.useSession();
 
     const logoutFunction = async()=>{
       try {
@@ -63,8 +63,13 @@ const MainNavbar = () => {
                   <div className="">
                     <Image src={`https://api.dicebear.com/9.x/initials/svg?seed=${session.user.name}`} alt="profile" width={30} height={30}></Image>
                   </div>
-                  <div className="">
-                    <p className='text-shadow-muted-foreground text-gray-600 dark:text-green-100'>{session.user.name}</p>
+                  <div className="flex items-center justify-start flex-col">
+                    <div className="">
+                      <p className='text-shadow-muted-foreground text-gray-600 dark:text-green-100 text-sm truncate w-[30px] md:w-full'>{session.user.name}</p>
+                    </div>
+                    <div className="w-full flex justify-start">
+                      <p className='text-shadow-muted-foreground text-gray-500 dark:text-green-100 text-sm'>{session.user.role}</p>
+                    </div>
                   </div>
                 </div>
                 </DropdownMenuTrigger>
