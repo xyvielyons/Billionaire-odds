@@ -56,7 +56,14 @@ export const auth = betterAuth({
         additionalFields:{
             role:{
                 type:"string"
+            },
+            isPremium:{
+                type:"string"
+            },
+            premiumUntil:{
+                type:"string"
             }
+            
         }
     }
 }satisfies BetterAuthOptions)

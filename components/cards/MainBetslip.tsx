@@ -5,7 +5,7 @@ import { BsFillPeopleFill } from "react-icons/bs";
 import { Button } from '@heroui/react';
 import { LuBrain } from "react-icons/lu";
 import { GameInterfaceTypes } from '@/Types/gameTypes';
-import { GetAllActiveGames } from '@/actions/AddGame';
+import { GetAllActiveGames,GetAllFreeGames } from '@/actions/AddGame';
 import { GiPadlock } from "react-icons/gi";
 import {
     Dialog,
@@ -16,19 +16,28 @@ import {
     DialogTrigger,
   } from "@/components/ui/dialog"
 import { FaCrown } from 'react-icons/fa6';
+import { useRouter } from 'next/navigation';
 const MainBetslip = () => {
+    const router = useRouter()
+    const [freeGames, setFreeGames] = useState<GameInterfaceTypes[]>([])
+    const [premiumGames, setPremiumGames] = useState<GameInterfaceTypes[]>([])
 
-    const [games, setGames] = useState<GameInterfaceTypes[]>([])
+    useEffect(() => {
+        const fetchGames = async () => {
+        const activeFreeGames:any = await GetAllFreeGames() // ✅ call the server action, not the component
+        setFreeGames(activeFreeGames)
+        }
+        fetchGames()
+    }, [])
+    useEffect(() => {
+        const fetchGames = async () => {
+            const activePremiumGames:any = await GetAllActiveGames() // ✅ call the server action, not the component
+            setPremiumGames(activePremiumGames)
+        }
+        fetchGames()
+    }, [])
 
-  useEffect(() => {
-    const fetchGames = async () => {
-      const activeGames:any = await GetAllActiveGames() // ✅ call the server action, not the component
-      setGames(activeGames)
-    }
-    fetchGames()
-  }, [])
 
-  console.log(games)
   return (
     <div className='p-2'>
         <div className="p-2 border-1.5 border-green-200 shadow-sm rounded-sm dark:border-green-800">
@@ -43,11 +52,11 @@ const MainBetslip = () => {
             </div>
         </div>
         <div className="">
-            {games.map((game,i)=>(
+            {freeGames.map((game,i)=>(
             <div key={i} className="p-4 border-1 border-green-200 m-2 md:items-center md:flex-row flex-col flex justify-between rounded-sm dark:border-green-800 shadow-sm dark:bg-[#191919] bg-surface-light">
                 <div className="">
                     <h1 className='text-xl font-bold text-green-900 dark:text-green-500'>{`${game.homeTeam} vs ${game.awayTeam}`}</h1>
-                    <p className='text-gray-600 dark:text-gray-400'>{`${game.marketName}`}</p>
+                    <p className='text-gray-600 dark:text-gray-400 font-bold text-primarymain'>{`Tip: ${game.marketName}`}</p>
                     <p className='text-gray-600 dark:text-gray-400'>{`Date: ${new Date(game.matchDate).toISOString().split("T")[0]}(${new Date(game.matchDate).toLocaleDateString("en-US",{weekday:"long"})})`}</p>
                     <p className='text-gray-600 dark:text-gray-400'>{`Time: ${game.matchTime}`}</p>
                 </div>
@@ -57,7 +66,7 @@ const MainBetslip = () => {
                     <p className='text-green-800 bg-green-100 text-sm p-2 '>High confidence</p>
                 </div>
                 <div className="mt-2">
-                    <Dialog>
+                    {/* <Dialog>
                         <DialogTrigger className='bg-gray-300 p-2 cursor-pointer text-gray-800 flex flex-row items-center gap-2 hover:bg-gray-200 active:bg-gray-200'>
                             <span><LuBrain></LuBrain></span>
                             <p>Analysis</p>
@@ -70,7 +79,7 @@ const MainBetslip = () => {
                             </DialogDescription>
                             </DialogHeader>
                         </DialogContent>
-                    </Dialog>
+                    </Dialog> */}
                 </div>
             </div>
             ))}
@@ -79,7 +88,7 @@ const MainBetslip = () => {
         </div>
             <div className="p-4 border-1 border-green-200 m-2 md:items-center md:flex-row flex-col rounded-sm dark:border-green-800 shadow-sm dark:bg-[#191919] bg-surface-light items-center space-y-4 justify-center">
                 <GiPadlock size={24} className='w-full text-gray-600 dark:text-gray-200'/>
-                <Button radius='none' className='bg-primarymain text-white w-full' startContent={<FaCrown size={24}/>}>Upgrade To Premium</Button>
+                <Button radius='none' className='bg-primarymain text-white w-full' startContent={<FaCrown size={24}/>} onClick={()=>router.push('/upgrade')}>Upgrade To Premium</Button>
                 <p className='text-gray-600 text-center dark:text-gray-300'>Get unlimited access to more expert odds and exclusive predictions.</p>
             </div>
       

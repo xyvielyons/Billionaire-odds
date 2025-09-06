@@ -37,7 +37,7 @@ const SecondaryNavbar = () => {
             </div>
 
             <div className="space-y-2">
-                <Button radius='none' className='bg-primarymain text-white w-full' startContent={<FaCrown size={24}/>}>Upgrade To Premium</Button>
+                <Button radius='none' className='bg-primarymain text-white w-full' startContent={<FaCrown size={24}/>} onClick={()=>router.push('/upgrade')}>Upgrade To Premium</Button>
                 <Button radius='none' className='w-full text-gray-700 dark:text-gray-200' startContent={<RiAdminFill size={24}/>} onClick={()=>router.push('/admin')}>Admin</Button>
             </div>
         </div>

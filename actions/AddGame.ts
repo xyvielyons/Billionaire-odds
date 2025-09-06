@@ -40,6 +40,22 @@ export const GetAllActiveGames = async () => {
         console.log("Error getting all active games",error)
     }
 }
+export const GetAllFreeGames = async () => {
+    try {
+        const getAllActiveGames = await prisma.game.findMany({
+            where:{
+                status:"upcoming",
+                isFree:true
+            },
+            orderBy:{
+                matchDate:"asc"
+            }
+        })
+        return getAllActiveGames;
+    } catch (error) {
+        console.log("Error getting all free active games",error)
+    }
+}
 export const DeleteGame = async ({id}:{id:string})=>{
     try {
         const DeleteGame = await prisma.game.delete({
@@ -53,3 +69,4 @@ export const DeleteGame = async ({id}:{id:string})=>{
         console.log("Error deleting game",error)
     }
 }
+

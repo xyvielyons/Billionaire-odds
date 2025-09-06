@@ -23,6 +23,8 @@ model User {
   role          String    @default("user")
   banned        Boolean   @default(false)
   banReason     String?
+  isPremium   Boolean @default(false)
+  premiumUntil DateTime?
   banExpires    Int? /// Unix timestamp for ban expiration
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
