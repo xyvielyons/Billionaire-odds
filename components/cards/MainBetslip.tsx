@@ -1,10 +1,32 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoStarSharp } from "react-icons/io5";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { Button } from '@heroui/react';
 import { LuBrain } from "react-icons/lu";
+import { GameInterfaceTypes } from '@/Types/gameTypes';
+import { GetAllActiveGames } from '@/actions/AddGame';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+  } from "@/components/ui/dialog"
 const MainBetslip = () => {
+
+    const [games, setGames] = useState<GameInterfaceTypes[]>([])
+
+  useEffect(() => {
+    const fetchGames = async () => {
+      const activeGames:any = await GetAllActiveGames() // ✅ call the server action, not the component
+      setGames(activeGames)
+    }
+    fetchGames()
+  }, [])
+
+  console.log(games)
   return (
     <div className='p-2'>
         <div className="p-2 border-1.5 border-green-200 shadow-sm rounded-sm dark:border-green-800">
@@ -19,69 +41,42 @@ const MainBetslip = () => {
             </div>
         </div>
         <div className="">
-            <div className="p-4 border-1 border-green-200 m-2 md:items-center md:flex-row flex-col flex justify-between rounded-sm dark:border-green-800 shadow-sm dark:bg-[#191919] bg-surface-light">
+            {games.map((game,i)=>(
+            <div key={i} className="p-4 border-1 border-green-200 m-2 md:items-center md:flex-row flex-col flex justify-between rounded-sm dark:border-green-800 shadow-sm dark:bg-[#191919] bg-surface-light">
                 <div className="">
-                    <h1 className='text-xl font-bold text-green-900 dark:text-green-500'>Chelsea vs Everton</h1>
-                    <p className='text-gray-600 dark:text-gray-400'>Over 1.5 Goals</p>
+                    <h1 className='text-xl font-bold text-green-900 dark:text-green-500'>{`${game.homeTeam} vs ${game.awayTeam}`}</h1>
+                    <p className='text-gray-600 dark:text-gray-400'>{`${game.marketName}`}</p>
+                    <p className='text-gray-600 dark:text-gray-400'>{`Date: ${new Date(game.matchDate).toISOString().split("T")[0]}(${new Date(game.matchDate).toLocaleDateString("en-US",{weekday:"long"})})`}</p>
+                    <p className='text-gray-600 dark:text-gray-400'>{`Time: ${game.matchTime}`}</p>
                 </div>
                 
                 <div className="space-y-2 mb-2">
-                    <h1 className='text-white bg-primarymain text-sm p-2 mt-8'>odd: 3.5</h1>
+                    <h1 className='text-white bg-primarymain text-sm p-2 mt-8'>{`Odd - ${game.gameOdd}`}</h1>
                     <p className='text-green-800 bg-green-100 text-sm p-2 '>High confidence</p>
                 </div>
                 <div className="mt-2">
-                    <Button radius='none' className='border-green-700 text-gray-600 dark:text-gray-100' startContent={<LuBrain></LuBrain>} >Analysis</Button>
+                    <Dialog>
+                        <DialogTrigger className='bg-gray-300 p-2 cursor-pointer text-gray-800 flex flex-row items-center gap-2'>
+                            <span><LuBrain></LuBrain></span>
+                            <p>Analysis</p>
+                        </DialogTrigger>
+                        <DialogContent>
+                            <DialogHeader>
+                            <DialogTitle>Game Analysis</DialogTitle>
+                            <DialogDescription>
+                                {game.analysis}
+                            </DialogDescription>
+                            </DialogHeader>
+                        </DialogContent>
+                    </Dialog>
                 </div>
             </div>
-            <div className="p-4 border-1 border-green-200 m-2 md:items-center md:flex-row flex-col flex justify-between rounded-sm dark:border-green-800 shadow-sm dark:bg-[#191919] bg-surface-light">
-                <div className="">
-                    <h1 className='text-xl font-bold text-green-900 dark:text-green-500'>Manchester City vs Arsenal</h1>
-                    <p className='text-gray-600 dark:text-gray-400'>Over 2.5 Goals</p>
-                </div>
-                
-                <div className="space-y-2 mb-2">
-                    <h1 className='text-white bg-primarymain text-sm p-2 mt-8'>odd: 2.5</h1>
-                    <p className='text-green-800 bg-green-100 text-sm p-2 '>High confidence</p>
-                </div>
-                <div className="mt-2">
-                    <Button radius='none' className='border-green-700 text-gray-600 dark:text-gray-100' startContent={<LuBrain></LuBrain>} >Analysis</Button>
-                </div>
-            </div>
-            <div className="p-4 border-1 border-green-200 m-2 md:items-center md:flex-row flex-col flex justify-between rounded-sm dark:border-green-800 shadow-sm dark:bg-[#191919] bg-surface-light">
-                <div className="">
-                    <h1 className='text-xl font-bold text-green-900 dark:text-green-500'>Chelsea vs Everton</h1>
-                    <p className='text-gray-600 dark:text-gray-400'>Over 1.5 Goals</p>
-                </div>
-                
-                <div className="space-y-2 mb-2">
-                    <h1 className='text-white bg-primarymain text-sm p-2 mt-8'>odd: 3.5</h1>
-                    <p className='text-green-800 bg-green-100 text-sm p-2 '>High confidence</p>
-                </div>
-                <div className="mt-2">
-                    <Button radius='none' className='border-green-700 text-gray-600 dark:text-gray-100' startContent={<LuBrain></LuBrain>} >Analysis</Button>
-                </div>
-            </div>
-            <div className="p-4 border-1 border-green-200 m-2 md:items-center md:flex-row flex-col flex justify-between rounded-sm dark:border-green-800 shadow-sm dark:bg-[#191919] bg-surface-light">
-                <div className="">
-                    <h1 className='text-xl font-bold text-green-900 dark:text-green-500'>Manchester City vs Arsenal</h1>
-                    <p className='text-gray-600 dark:text-gray-400'>Over 2.5 Goals</p>
-                </div>
-                
-                <div className="space-y-2 mb-2">
-                    <h1 className='text-white bg-primarymain text-sm p-2 mt-8'>odd: 2.5</h1>
-                    <p className='text-green-800 bg-green-100 text-sm p-2 '>High confidence</p>
-                </div>
-                <div className="mt-2">
-                    <Button radius='none' className='border-green-700 text-gray-600 dark:text-gray-100' startContent={<LuBrain></LuBrain>} >Analysis</Button>
-                </div>
-            </div>
+            ))}
+            
             
         </div>
         
       
-        </div>
-        <div className="">
-
         </div>
     </div>
   )

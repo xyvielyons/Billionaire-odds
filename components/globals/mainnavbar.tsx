@@ -51,8 +51,8 @@ const MainNavbar = () => {
     }
   return (
     <div className="w-full p-2 bg-surface-light border-b-1.5 border-borderline-light flex justify-between items-center dark:bg-[#151515] dark:border-borderline-dark">
-        <div className="">
-            <Image src={logo} alt='logo' width={160} height={160} className='dark:invert' onClick={()=>router.push('/')}></Image>
+        <div className="cursor-pointer">
+            <Image src={logo} alt='logo' width={160} height={160} className='dark:invert cursor-pointer' onClick={()=>router.push('/')}></Image>
         </div>
         <div className="flex items-center gap-2">
           {!session && <Button className='bg-primarymain text-white' radius='none' onClick={()=>router.push('/sign-in')}>Sign In</Button>}

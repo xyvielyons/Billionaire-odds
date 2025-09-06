@@ -192,7 +192,7 @@ const AddGames = () => {
 
         <div className="space-y-4">
             <Button className="w-full bg-primarymain text-white" radius="none" type="submit">Add Game</Button>
-            <Button className="w-full text-white" radius="none" onClick={()=>router.push("/games")}>Active Games</Button>
+            <Button className="w-full text-white bg-gray-500" radius="none" onClick={()=>router.push("/games")}>Active Games</Button>
         </div>
        
       </form>

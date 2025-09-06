@@ -40,4 +40,16 @@ export const GetAllActiveGames = async () => {
         console.log("Error getting all active games",error)
     }
 }
-
+export const DeleteGame = async ({id}:{id:string})=>{
+    try {
+        const DeleteGame = await prisma.game.delete({
+            where:{
+                id
+            }
+        })
+        console.log("Game Deleted")
+        return DeleteGame;
+    } catch (error) {
+        console.log("Error deleting game",error)
+    }
+}
