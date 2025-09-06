@@ -41,9 +41,9 @@ export default async function authMiddleware(request: NextRequest) {
   // }
 
   // If the route is in deniedRoutes and the user has no session → redirect to sign-in
-  if (isDeniedRoute && !session) {
-    return NextResponse.redirect(new URL("/", request.url));
-  }
+  // if (isDeniedRoute && !session) {
+  //   return NextResponse.redirect(new URL("/", request.url));
+  // }
   
 
   return NextResponse.next();

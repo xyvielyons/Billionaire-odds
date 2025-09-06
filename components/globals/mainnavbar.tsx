@@ -50,7 +50,7 @@ const MainNavbar = () => {
 
     }
   return (
-    <div className="p-2 bg-surface-light border-b-1.5 border-borderline-light flex justify-between items-center dark:bg-[#151515] dark:border-borderline-dark">
+    <div className="w-full p-2 bg-surface-light border-b-1.5 border-borderline-light flex justify-between items-center dark:bg-[#151515] dark:border-borderline-dark">
         <div className="">
             <Image src={logo} alt='logo' width={160} height={160} className='dark:invert' onClick={()=>router.push('/')}></Image>
         </div>

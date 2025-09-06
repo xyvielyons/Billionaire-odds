@@ -125,14 +125,25 @@
 }
 /* Frame 17 */
 
+.bg-linear-custom {
+  background: linear-gradient(288.9deg, rgba(255, 255, 255, 0.76) 23.74%, rgba(2, 169, 93, 0) 116.12%);
+}
 
-
+@layer utilities {
+  .bg-linear-custom {
+    background: linear-gradient(
+      288.9deg,
+      rgba(255, 255, 255, 0.76) 23.74%,
+      rgba(2, 169, 93, 0) 116.12%
+    );
+  }
+}
 
 
 
 @theme {
   --color-surface-light:#F9FAFB;
-  --color-surface-dark:#252525;
+  --color-surface-dark:#151515;
   --color-borderline-light:#E5E7EB;
   --color-borderline-dark:#3A3A3A;
   --color-textprimary-light:#111827;
