@@ -18,10 +18,14 @@ const Packages = () => {
     const [loadingM, setMLoading] = useState(false);
     const {data:session} = authClient.useSession();
 
+    if(!session){
+        return <p>loading session</p>
+    }
+
 const handleWeeklyPay = async () => {
     setMLoading(true);
     try {
-    const data = await initializePaystackTransaction(session?.user.email || "", 13000);
+    const data = await initializePaystackTransaction(session?.user.email || "", 100,`${process.env.NEXT_PUBLIC_BASE_URL}/verify`,session.user.id,"weekly");
     console.log("Paystack response:", data);
 
     // Redirect user to Paystack checkout page
@@ -37,13 +41,14 @@ const handleWeeklyPay = async () => {
 const handleMonthlyPay = async () => {
     setLoading(true);
     try {
-    const data = await initializePaystackTransaction(session?.user.email || "", 39000);
+    const data = await initializePaystackTransaction(session?.user.email || "", 39000,`${process.env.NEXT_PUBLIC_BASE_URL}/verify`,session.user.id,"monthly" );
     console.log("Paystack response:", data);
 
     // Redirect user to Paystack checkout page
     if (data.status && data.data.authorization_url) {
         window.location.href = data.data.authorization_url;
     }
+
     } catch (err) {
     console.error(err);
     } finally {

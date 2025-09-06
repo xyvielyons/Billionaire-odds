@@ -1,7 +1,9 @@
 "use server";
+import prisma from '@/lib/prisma'
 
-export async function initializePaystackTransaction(email: string, amount: number) {
+export async function initializePaystackTransaction(email: string, amount: number, callback:string,id:string,plan:string) {
   try {
+    console.log(id)
     const response = await fetch("https://api.paystack.co/transaction/initialize", {
       method: "POST",
       headers: {
@@ -9,9 +11,14 @@ export async function initializePaystackTransaction(email: string, amount: numbe
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        callback_url:callback,
         email,
         amount, // amount in kobo (NGN minor unit). Example: 500000 = ₦5,000
-        channels:["card", "bank", "apple_pay", "ussd", "qr", "mobile_money", "bank_transfer", "eft"]
+        channels:["card", "bank", "apple_pay", "ussd", "qr", "mobile_money", "bank_transfer", "eft"],
+        metadata: JSON.stringify({
+          userId: id,
+          plan,
+        }),
       }),
     });
 
