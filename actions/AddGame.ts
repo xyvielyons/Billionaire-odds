@@ -2,7 +2,7 @@
 import { GameInterfaceTypes } from '@/Types/gameTypes'
 import prisma from '@/lib/prisma'
 
-export const AddNewGame = async({homeTeam,awayTeam,matchDate,matchTime,analysis,marketName,gameOdd}:GameInterfaceTypes)=>{
+export const AddNewGame = async({homeTeam,awayTeam,matchDate,matchTime,analysis,marketName,gameOdd,isFree}:GameInterfaceTypes)=>{
     try {
         const saveGame = await prisma.game.create({
             data:{
@@ -13,8 +13,8 @@ export const AddNewGame = async({homeTeam,awayTeam,matchDate,matchTime,analysis,
                 matchTime,
                 marketName,
                 gameOdd,
-                status:"upcoming"
-
+                status: "upcoming",
+                isFree
             }
         })
         console.log("game added")

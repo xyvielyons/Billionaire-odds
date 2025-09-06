@@ -4,7 +4,7 @@ import React from 'react'
 
 const AdminPage = () => {
   return (
-    <div className='dark:bg-surface-dark h-screen'>
+    <div className='dark:bg-surface-dark h-full'>
       <MainNavbar></MainNavbar>
       <div className="p-4">
         <h1 className='text-2xl font-bold text-gray-800 dark:text-gray-200'>Admin Portal</h1>

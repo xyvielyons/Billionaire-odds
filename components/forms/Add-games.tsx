@@ -11,12 +11,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormDescription
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from "@heroui/react"
 import Textarea from "../globals/textArea"
 import { AddNewGame } from "@/actions/AddGame"
 import { toast } from "sonner"
+import { Switch } from "../ui/switch"
 const AddGames = () => {
   const form = useForm<z.infer<typeof gameSchema>>({
     resolver: zodResolver(gameSchema),
@@ -28,6 +30,7 @@ const AddGames = () => {
       marketName:"",
       analysis:"",
       gameOdd:"",
+      isFree:false
     },
   })
 
@@ -41,7 +44,8 @@ const AddGames = () => {
             matchTime:values.matchTime,
             analysis:values.analysis,
             marketName:values.marketName,
-            gameOdd:values.gameOdd
+            gameOdd:values.gameOdd,
+            isFree:values.isFree
         })
 
         if(addGame){
@@ -165,7 +169,24 @@ const AddGames = () => {
                 </FormItem>
                 )}
             />
-        
+            <FormField
+            control={form.control}
+            name="isFree"
+            render={({ field }) => (
+                <FormItem className="flex items-center justify-between rounded-lg border p-3">
+                <div className="space-y-0.5">
+                    <FormLabel>Free Game</FormLabel>
+                    <FormDescription>
+                    Mark this game as free for the public
+                    </FormDescription>
+                </div>
+                <FormControl>
+                    <Switch checked={field.value} onCheckedChange={field.onChange} />
+                </FormControl>
+                </FormItem>
+            )}
+            />
+
         <div className="space-y-4">
             <Button className="w-full bg-primarymain text-white" radius="none" type="submit">Add Game</Button>
             <Button className="w-full text-white" radius="none">Active Games</Button>

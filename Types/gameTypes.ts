@@ -6,4 +6,5 @@ export interface GameInterfaceTypes {
     analysis: string;
     matchTime: string;
     gameOdd: string;
+    isFree:boolean;
 }

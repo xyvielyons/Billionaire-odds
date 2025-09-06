@@ -7,5 +7,6 @@ export const gameSchema = z.object({
     marketName: z.string().min(1, "Match market is required"),
     analysis:z.string().min(1, "Write your analysis about the game"),
     matchTime:z.string().min(1, "Match time is required"),
-    gameOdd:z.string().min(1, "Game Odd is required")
+    gameOdd:z.string().min(1, "Game Odd is required"),
+    isFree:z.boolean()
   })
