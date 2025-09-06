@@ -24,3 +24,20 @@ export const AddNewGame = async({homeTeam,awayTeam,matchDate,matchTime,analysis,
         console.log("Error when adding new Game",error)
     }
 }
+
+export const GetAllActiveGames = async () => {
+    try {
+        const getAllActiveGames = await prisma.game.findMany({
+            where:{
+                status:"upcoming"
+            },
+            orderBy:{
+                matchDate:"asc"
+            }
+        })
+        return getAllActiveGames;
+    } catch (error) {
+        console.log("Error getting all active games",error)
+    }
+}
+

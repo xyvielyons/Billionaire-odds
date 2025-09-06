@@ -19,6 +19,7 @@ import Textarea from "../globals/textArea"
 import { AddNewGame } from "@/actions/AddGame"
 import { toast } from "sonner"
 import { Switch } from "../ui/switch"
+import { useRouter } from "next/navigation"
 const AddGames = () => {
   const form = useForm<z.infer<typeof gameSchema>>({
     resolver: zodResolver(gameSchema),
@@ -34,6 +35,7 @@ const AddGames = () => {
     },
   })
   const {reset} = form
+  const router = useRouter()
 
   async function onSubmit(values: z.infer<typeof gameSchema>) {
     // later call your /api/games endpoint to insert into Prisma
@@ -190,7 +192,7 @@ const AddGames = () => {
 
         <div className="space-y-4">
             <Button className="w-full bg-primarymain text-white" radius="none" type="submit">Add Game</Button>
-            <Button className="w-full text-white" radius="none">Active Games</Button>
+            <Button className="w-full text-white" radius="none" onClick={()=>router.push("/games")}>Active Games</Button>
         </div>
        
       </form>
