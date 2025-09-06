@@ -33,6 +33,7 @@ const AddGames = () => {
       isFree:false
     },
   })
+  const {reset} = form
 
   async function onSubmit(values: z.infer<typeof gameSchema>) {
     // later call your /api/games endpoint to insert into Prisma
@@ -53,6 +54,7 @@ const AddGames = () => {
                 description:"Your game has been successfully added"
             })
         }
+        reset()
 
     } catch (error) {
         console.log(error)
@@ -118,7 +120,6 @@ const AddGames = () => {
                         type="time"
                         id="time-picker"
                         step="1"
-                        defaultValue="00:00:00"
                         className="bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
                         {...field}
                     />
