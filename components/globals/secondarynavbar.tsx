@@ -7,11 +7,14 @@ import { FaCrown } from "react-icons/fa6";
 import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation';
 import { RiAdminFill } from "react-icons/ri";
+import { authClient } from '@/auth-client';
 
 const SecondaryNavbar = () => {
     const pathname = usePathname();
     const [path, setPath] = useState("");
     const router = useRouter();
+    const {data:session}:{data:any   } = authClient.useSession();
+
     useEffect(() => {
         setPath(pathname)
     }, [pathname])
@@ -37,9 +40,31 @@ const SecondaryNavbar = () => {
             </div>
 
             <div className="space-y-2">
-                <Button radius='none' className='bg-primarymain text-white w-full' startContent={<FaCrown size={24}/>} onClick={()=>router.push('/upgrade')}>Upgrade To Premium</Button>
-                <Button radius='none' className='w-full text-gray-700 dark:text-gray-200' startContent={<RiAdminFill size={24}/>} onClick={()=>router.push('/admin')}>Admin</Button>
-            </div>
+    {/* Upgrade button - only for non-premium, non-admin */}
+    {!(session?.user.isPremium || session?.user.role === "admin") && (
+        <Button
+            radius='none'
+            className='bg-primarymain text-white w-full'
+            startContent={<FaCrown size={24} />}
+            onClick={() => router.push('/upgrade')}
+        >
+            Upgrade To Premium
+        </Button>
+    )}
+
+    {/* Admin button - only for admin */}
+    {session?.user.role === "admin" && (
+        <Button
+            radius='none'
+            className='w-full text-gray-700 dark:text-gray-200'
+            startContent={<RiAdminFill size={24} />}
+            onClick={() => router.push('/admin')}
+        >
+            Admin
+        </Button>
+    )}
+</div>
+
         </div>
     </div>
   )
