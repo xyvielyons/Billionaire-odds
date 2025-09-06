@@ -6,6 +6,7 @@ import { Button } from '@heroui/react';
 import { LuBrain } from "react-icons/lu";
 import { GameInterfaceTypes } from '@/Types/gameTypes';
 import { GetAllActiveGames } from '@/actions/AddGame';
+import { GiPadlock } from "react-icons/gi";
 import {
     Dialog,
     DialogContent,
@@ -14,6 +15,7 @@ import {
     DialogTitle,
     DialogTrigger,
   } from "@/components/ui/dialog"
+import { FaCrown } from 'react-icons/fa6';
 const MainBetslip = () => {
 
     const [games, setGames] = useState<GameInterfaceTypes[]>([])
@@ -51,12 +53,12 @@ const MainBetslip = () => {
                 </div>
                 
                 <div className="space-y-2 mb-2">
-                    <h1 className='text-white bg-primarymain text-sm p-2 mt-8'>{`Odd - ${game.gameOdd}`}</h1>
+                    <h1 className='text-white bg-primarymain text-sm p-2 '>{`Odd - ${game.gameOdd}`}</h1>
                     <p className='text-green-800 bg-green-100 text-sm p-2 '>High confidence</p>
                 </div>
                 <div className="mt-2">
                     <Dialog>
-                        <DialogTrigger className='bg-gray-300 p-2 cursor-pointer text-gray-800 flex flex-row items-center gap-2'>
+                        <DialogTrigger className='bg-gray-300 p-2 cursor-pointer text-gray-800 flex flex-row items-center gap-2 hover:bg-gray-200 active:bg-gray-200'>
                             <span><LuBrain></LuBrain></span>
                             <p>Analysis</p>
                         </DialogTrigger>
@@ -75,7 +77,11 @@ const MainBetslip = () => {
             
             
         </div>
-        
+            <div className="p-4 border-1 border-green-200 m-2 md:items-center md:flex-row flex-col rounded-sm dark:border-green-800 shadow-sm dark:bg-[#191919] bg-surface-light items-center space-y-4 justify-center">
+                <GiPadlock size={24} className='w-full text-gray-600 dark:text-gray-200'/>
+                <Button radius='none' className='bg-primarymain text-white w-full' startContent={<FaCrown size={24}/>}>Upgrade To Premium</Button>
+                <p className='text-gray-600 text-center dark:text-gray-300'>Get unlimited access to more expert odds and exclusive predictions.</p>
+            </div>
       
         </div>
     </div>
