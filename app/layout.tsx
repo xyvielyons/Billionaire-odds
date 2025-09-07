@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner"
 import HeroClientProvider from "@/providers/Heroui";
 import { ThemeProvider } from "@/components/theme-provider";
+import ReduxProvider from "@/providers/reduxProvider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <HeroClientProvider>
+        <ReduxProvider>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -38,6 +40,7 @@ export default function RootLayout({
           >
             {children}
           </ThemeProvider>
+          </ReduxProvider>
           <Toaster richColors/>
         </HeroClientProvider>
       </body>

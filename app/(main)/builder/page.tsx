@@ -1,8 +1,11 @@
+import BuilderPage from '@/components/pages/builder'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>page</div>
+    <div>
+      <BuilderPage></BuilderPage>
+    </div>
   )
 }
 
