@@ -26,7 +26,7 @@ const formSchema = z.object({
 })
 
 
-const OddBuilderForm = ({onClose}:{onClose:any}) => {
+const OddBuilderForm = ({onClose,onOpenChange}:{onClose:any,onOpenChange:any}) => {
     const dispatch = useAppDispatch();
     // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -38,6 +38,7 @@ const OddBuilderForm = ({onClose}:{onClose:any}) => {
     },
   })
  
+  const {reset} = form
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     const randomUUID = uuidv4();
@@ -50,6 +51,7 @@ const OddBuilderForm = ({onClose}:{onClose:any}) => {
     }))
 
     toast.success("game added");
+    reset();
   }
 
   return (
@@ -102,7 +104,9 @@ const OddBuilderForm = ({onClose}:{onClose:any}) => {
             />
             <div className="flex flex-row gap-2 justify-end">
                 <Button className='' radius='none' onClick={()=>onClose()}>Close</Button>
-                <Button type="submit" className='bg-primarymain text-white' radius='none'>Add Game</Button>
+                <Button type="submit" className='bg-primarymain text-white' radius='none' onClick={()=>{
+                  onOpenChange(false)
+                }}>Add Game</Button>
             </div>
         </form>
     </Form>

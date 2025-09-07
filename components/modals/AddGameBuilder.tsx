@@ -19,7 +19,7 @@ import {
               <>
                 <ModalHeader className="flex flex-col gap-1">Add Game to Builder</ModalHeader>
                 <ModalBody>
-                    <OddBuilderForm onClose={onClose}></OddBuilderForm>
+                    <OddBuilderForm onClose={onClose} onOpenChange={onOpenChange} ></OddBuilderForm>
                 </ModalBody>
               </>
             )}
