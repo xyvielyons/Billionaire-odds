@@ -16,13 +16,8 @@ export const secondaryNavConstants: SecondaryNavType[] = [
     path:"/"
   },
   {
-    name: "Odd Builder",
+    name: "Custom Odd Builder",
     icon: IoBuildSharp, // ✅ component
     path:"/builder"
-  },
-  {
-    name: "Settings",
-    icon: IoSettingsSharp, // ✅ component
-    path:"/settings"
-  },
+  }
 ];
