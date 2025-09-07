@@ -1,8 +1,10 @@
 import GetActiveGames from '@/components/cards/getActiveGames'
 import MainNavbar from '@/components/globals/mainnavbar'
 import React from 'react'
+import { GetAllActiveGames } from "@/actions/AddGame";
 
-const GamesPage = () => {
+const GamesPage = async() => {
+  const games = await GetAllActiveGames(); // ✅ safe: server calling server
   return (
     <div className='dark:bg-surface-dark h-full'>
         <MainNavbar></MainNavbar>
@@ -12,7 +14,7 @@ const GamesPage = () => {
         </div>
 
         <div className="">
-            <GetActiveGames></GetActiveGames>
+            <GetActiveGames initialGames={games}></GetActiveGames>
         </div>
 
     </div>

@@ -12,16 +12,16 @@ import {
     CardTitle,
   } from "@/components/ui/card"
 import { Button } from '@heroui/react'
-const GetActiveGames = () => {
-  const [games, setGames] = useState<GameInterfaceTypes[]>([])
+const GetActiveGames = ({ initialGames }: { initialGames: GameInterfaceTypes[] }) => {
+  const [games, setGames] = useState(initialGames);
 
-  useEffect(() => {
-    const fetchGames = async () => {
-      const activeGames:any = await GetAllActiveGames() // ✅ call the server action, not the component
-      setGames(activeGames)
-    }
-    fetchGames()
-  }, [])
+  // useEffect(() => {
+  //   const fetchGames = async () => {
+  //     const activeGames:any = await GetAllActiveGames() // ✅ call the server action, not the component
+  //     setGames(activeGames)
+  //   }
+  //   fetchGames()
+  // }, [])
 
 
   return (

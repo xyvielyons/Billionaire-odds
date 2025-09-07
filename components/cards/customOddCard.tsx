@@ -21,8 +21,8 @@ const CustomOddCard = () => {
     }
   return (
     <div className='mt-2 gap-2 flex flex-col'>
-        {games.map((game)=>(
-            <Card className='rounded-sm'>
+        {games.map((game,i)=>(
+            <Card className='rounded-sm' key={i}>
             <CardHeader>
                 <div className="flex flex-row items-center justify-between">
                     <div className="flex gap-2 flex-col">
