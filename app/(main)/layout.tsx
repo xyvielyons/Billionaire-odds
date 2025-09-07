@@ -10,7 +10,7 @@ const MainLayout = ({
     children: React.ReactNode;
   }>) => {
   return (
-    <div className='dark:bg-[#151515] h-full max-w-7xl mx-auto'>
+    <div className='dark:bg-surface-dark h-full max-w-7xl mx-auto'>
       <div className="fixed w-full z-30 max-w-7xl">
         <MainNavbar></MainNavbar>
         <SecondaryNavbar></SecondaryNavbar>

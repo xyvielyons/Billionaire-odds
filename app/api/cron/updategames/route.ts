@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import * as dfnsTz from "date-fns-tz";
+import { DateTime } from "luxon";
 
 export async function GET() {
   try {
-    // Get the current Nairobi time as a JS Date
-    const now = dfnsTz.toZonedTime(new Date(), "Africa/Nairobi");
+    // ✅ Current Nairobi time
+    const now = DateTime.now().setZone("Africa/Nairobi");
 
     const games = await prisma.game.findMany({
       where: {
@@ -14,14 +14,15 @@ export async function GET() {
     });
 
     for (const game of games) {
-      // Build the datetime string in Nairobi timezone
-      const matchDateStr = game.matchDate.toISOString().split("T")[0]; 
-      const dateTimeString = `${matchDateStr}T${game.matchTime}`;
+      // Build Nairobi datetime from stored date + time
+      const matchDateStr = game.matchDate.toISOString().split("T")[0]; // yyyy-mm-dd
+      const dateTimeString = `${matchDateStr}T${game.matchTime}`;      // e.g. "2025-09-07T15:30"
 
-      // Interpret this string as a Nairobi datetime
-      const matchDateTime = dfnsTz.toZonedTime(new Date(dateTimeString), "Africa/Nairobi");
+      const matchDateTime = DateTime.fromISO(dateTimeString, {
+        zone: "Africa/Nairobi",
+      });
 
-      // Compare in Nairobi time
+      // ✅ Compare directly in Nairobi timezone
       if (now >= matchDateTime) {
         await prisma.game.update({
           where: { id: game.id },
@@ -33,6 +34,9 @@ export async function GET() {
     return NextResponse.json({ success: true, updated: true });
   } catch (err) {
     console.error("Cron error:", err);
-    return NextResponse.json({ success: false, error: "Cron failed" }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: "Cron failed" },
+      { status: 500 }
+    );
   }
 }
