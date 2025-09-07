@@ -93,7 +93,7 @@ const MainBetslip = () => {
                                     <h1 className='text-xl font-bold text-green-900 dark:text-green-500'>{`${game.homeTeam} vs ${game.awayTeam}`}</h1>
                                     <p className='dark:text-gray-400 font-bold text-primarymain'>{`Tip: ${game.marketName}`}</p>
                                     <p className='text-gray-600 dark:text-gray-400'>{`Date: ${new Date(game.matchDate).toISOString().split("T")[0]} (${new Date(game.matchDate).toLocaleDateString("en-US", { weekday: "long" })})`}</p>
-                                    <p className='text-gray-600 dark:text-gray-400'>{`Time: ${game.matchTime}`}</p>
+                                    <p className='text-gray-600 dark:text-gray-400'>{`Time: ${game.matchTime} EAT`}</p>
                                 </div>
                                 <div className="space-y-2 mb-2">
                                     <h1 className='text-white bg-primarymain text-sm p-2 '>{`Odd - ${game.gameOdd}`}</h1>
