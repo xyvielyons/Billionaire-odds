@@ -1,6 +1,7 @@
 import MainBetslip from '@/components/cards/MainBetslip'
 import MainOddBuilder from '@/components/pages/MainOddBuilder'
 import React from 'react'
+export const dynamic = "force-dynamic"; // ✅ ensure it runs on every request
 
 const page = () => {
   return (
