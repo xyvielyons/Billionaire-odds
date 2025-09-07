@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react'
 import { IoStarSharp } from "react-icons/io5";
 import { BsFillPeopleFill } from "react-icons/bs";
-import { Button } from '@heroui/react';
 import { LuBrain } from "react-icons/lu";
 import { GameInterfaceTypes } from '@/Types/gameTypes';
 import { GetAllActiveGames, GetAllFreeGames } from '@/actions/AddGame';
@@ -19,12 +18,25 @@ import {
 import { FaCrown } from 'react-icons/fa6';
 import { useRouter } from 'next/navigation';
 import { authClient } from '@/auth-client';
+import { FaHammer } from "react-icons/fa6";
+import {
+    Modal,
+    ModalContent,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+    Button,
+    useDisclosure,
+  } from "@heroui/react";
+import MainBetslipBuilder from '../modals/MainBetslipBuilder';
+  
 
 const MainBetslip = () => {
     const router = useRouter()
     const [freeGames, setFreeGames] = useState<GameInterfaceTypes[]>([])
     const [premiumGames, setPremiumGames] = useState<GameInterfaceTypes[]>([])
     const { data: session }: { data: any } = authClient.useSession();
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
     useEffect(() => {
         const fetchFreeGames = async () => {
@@ -44,6 +56,20 @@ const MainBetslip = () => {
 
     return (
         <div className='p-2'>
+            <div>
+                <Button className='w-full text-gray-800 dark:text-white mb-2' radius='none' startContent={<FaHammer/>} onClick={()=>onOpen()} >Build Odds</Button>
+                <div className="">
+                <MainBetslipBuilder 
+                    isOpen={isOpen} 
+                    onOpenChange={onOpenChange} 
+                    games={(session?.user.isPremium || session?.user.role === "admin")
+                    ? premiumGames.map(g => ({ ...g, gameOdd: Number(g.gameOdd) }))
+                    : freeGames.map(g => ({ ...g, gameOdd: Number(g.gameOdd) }))
+                    }
+                />
+                </div>
+
+            </div>
             <div className="p-2 border-1.5 border-green-200 shadow-sm rounded-sm dark:border-green-800">
                 
                 {/* Header */}
