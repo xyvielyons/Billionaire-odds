@@ -12,13 +12,14 @@ import {
 import { Button } from '@heroui/react'
 import { initializePaystackTransaction } from '@/actions/paystack'
 import { authClient } from '@/auth-client'
-
+import { useRouter } from 'next/navigation'
 const Packages = () => {
     const [loading, setLoading] = useState(false);
     const [loadingM, setMLoading] = useState(false);
     const {data:session} = authClient.useSession();
-
+    const router = useRouter()
     if(!session){
+        router.push('/sign-in');
         return <p>loading session</p>
     }
 
