@@ -30,7 +30,7 @@ const BuilderPage = () => {
           {games.length > 0 && (
             <div className="">
               <Button className='w-full' radius='none' startContent={<FaHammer></FaHammer>} onClick={()=>onOpenBuilder()}>Build Odds</Button>
-              <p className="text-sm text-gray-500 mb-4">
+              <p className="text-sm text-gray-500 mb-4 dark:text-gray-300">
                 The <span className="font-semibold">Build</span> button will automatically 
                 combine games from the list and calculate their total odds by multiplying 
                 them together. We’ll try to match your target odd as closely as possible, 
