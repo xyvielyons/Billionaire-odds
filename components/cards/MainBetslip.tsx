@@ -58,6 +58,13 @@ const MainBetslip = () => {
         <div className='p-2'>
             <div>
                 <Button className='w-full text-gray-800 dark:text-white mb-2' radius='none' startContent={<FaHammer/>} onClick={()=>onOpen()} >Build Odds</Button>
+                <p className="text-sm text-gray-500 mb-4">
+                The <span className="font-semibold">Build</span> button will automatically 
+                combine games from the list and calculate their total odds by multiplying 
+                them together. We’ll try to match your target odd as closely as possible, 
+                but depending on the available games the final value may be a bit higher or lower.
+                </p>
+
                 <div className="">
                 <MainBetslipBuilder 
                     isOpen={isOpen} 

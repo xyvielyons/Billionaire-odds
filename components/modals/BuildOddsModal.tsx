@@ -28,25 +28,25 @@ const shuffle = <T,>(arr: T[]) => {
   return copy;
 };
 
-// Build slip with randomized search
+// Build slip with randomized search (multiplicative odds)
 const buildSlip = (games: Game[], targetOdd: number, attempts = 1000) => {
   let bestSlip: Game[] = [];
   let bestDiff = Infinity;
 
   for (let a = 0; a < attempts; a++) {
     let shuffled = shuffle(games);
-    let sum = 0;
+    let product = 1;
     let slip: Game[] = [];
 
     for (let g of shuffled) {
-      if (sum < targetOdd) {
-        sum += g.gameOdd;
+      if (product < targetOdd) {
+        product *= g.gameOdd;
         slip.push(g);
       }
-      if (sum >= targetOdd) break;
+      if (product >= targetOdd) break;
     }
 
-    const diff = Math.abs(sum - targetOdd);
+    const diff = Math.abs(product - targetOdd);
     if (diff < bestDiff) {
       bestDiff = diff;
       bestSlip = slip;
@@ -95,7 +95,6 @@ export default function BuildOddsModal({
                 {[2, 5, 10].map((o) => (
                   <Button
                     key={o}
-                    
                     onPress={() => handleBuild(o)}
                     className="w-full"
                     radius="sm"
@@ -106,13 +105,14 @@ export default function BuildOddsModal({
               </div>
 
               {/* Custom Odd */}
-              <div className="flex gap-2 items-center my-2">
+              <div className="flex flex-col gap-2 my-2">
                 <Input
                   placeholder="Enter custom odd"
                   type="number"
                   onChange={(e) => setTargetOdd(Number(e.target.value))}
                   radius="sm"
                 />
+                
                 <Button
                   color="success"
                   onPress={() => targetOdd && handleBuild(targetOdd)}
@@ -136,9 +136,9 @@ export default function BuildOddsModal({
                       </p>
                     ))}
                     <p className="mt-2 text-sm text-gray-500">
-                      Final sum of odds:{" "}
+                      Final product of odds:{" "}
                       {finalSlip
-                        .reduce((acc, g) => acc + g.gameOdd, 0)
+                        .reduce((acc, g) => acc * g.gameOdd, 1)
                         .toFixed(2)}
                     </p>
                   </div>
@@ -147,19 +147,19 @@ export default function BuildOddsModal({
               </div>
             </ModalBody>
             <ModalFooter>
-                <Button
-                    color="danger"
-                    variant="light"
-                    onPress={() => {
-                    // reset state when closing
-                    setTargetOdd(null);
-                    setFinalSlip(null);
-                    setError(null);
-                    onClose();
-                    }}
-                >
-                    Close
-                </Button>
+              <Button
+                color="danger"
+                variant="light"
+                onPress={() => {
+                  // reset state when closing
+                  setTargetOdd(null);
+                  setFinalSlip(null);
+                  setError(null);
+                  onClose();
+                }}
+              >
+                Close
+              </Button>
             </ModalFooter>
           </>
         )}

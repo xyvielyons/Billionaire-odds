@@ -25,10 +25,18 @@ const BuilderPage = () => {
       <h1 className='text-2xl font-semibold text-gray-800 dark:text-gray-100'>Custom Odd Builder</h1>
       <p className='text-gray-600 dark:text-gray-300'>Create your own slip by adding games and setting custom odds to match your strategy.</p>
       <div className="">
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-col md:flex-row">
           <Button startContent={<Plus></Plus>} className='w-full bg-primarymain text-white' radius='none' onPress={()=>onOpen()}>Add Game</Button>
           {games.length > 0 && (
-            <Button className='w-full' radius='none' startContent={<FaHammer></FaHammer>} onClick={()=>onOpenBuilder()}>Build Odds</Button>
+            <div className="">
+              <Button className='w-full' radius='none' startContent={<FaHammer></FaHammer>} onClick={()=>onOpenBuilder()}>Build Odds</Button>
+              <p className="text-sm text-gray-500 mb-4">
+                The <span className="font-semibold">Build</span> button will automatically 
+                combine games from the list and calculate their total odds by multiplying 
+                them together. We’ll try to match your target odd as closely as possible, 
+                but depending on the available games the final value may be a bit higher or lower.
+                </p>
+            </div>
           )}
         </div>
         
