@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-surface-dark`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
         <HeroClientProvider>
         <ReduxProvider>
