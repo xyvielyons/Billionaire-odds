@@ -130,33 +130,35 @@ export default function BuildOddsModal({
               </div>
 
               {/* Result Slip */}
-              <div className="mt-4">
-                {finalSlip && (
-                  <div>
-                    <h3 className="font-semibold mb-2">Your Slip (target {targetOdd})</h3>
+              {/* Result Slip */}
+                <div className="mt-4">
+                  {finalSlip && (
+                    <div className="max-h-[300px] overflow-y-auto pr-2">
+                      <h3 className="font-semibold mb-2">Your Slip (target {targetOdd})</h3>
 
-                    {finalSlip.map((g) => (
-                      <div key={g.id} className="mb-3">
-                        <p className="text-sm font-semibold">
-                          {g.homeTeam} vs {g.awayTeam}
-                        </p>
-                        <p className="text-xs text-gray-500">Market: {g.marketName}</p>
-                        <p className="text-xs text-gray-500">
-                          {formatDate(g.matchDate)} • {g.matchTime}
-                        </p>
-                        <p className="text-sm font-medium mt-1">Odd: {g.gameOdd}</p>
-                      </div>
-                    ))}
+                      {finalSlip.map((g) => (
+                        <div key={g.id} className="mb-3 border-b pb-2">
+                          <p className="text-sm font-semibold">
+                            {g.homeTeam} vs {g.awayTeam}
+                          </p>
+                          <p className="text-xs text-gray-500">Market: {g.marketName}</p>
+                          <p className="text-xs text-gray-500">
+                            {formatDate(g.matchDate)} • {g.matchTime}
+                          </p>
+                          <p className="text-sm font-medium mt-1">Odd: {g.gameOdd}</p>
+                        </div>
+                      ))}
 
-                    <p className="mt-2 text-sm text-gray-600">
-                      Final product of odds:{" "}
-                      {finalSlip.reduce((acc, g) => acc * g.gameOdd, 1).toFixed(2)}
-                    </p>
-                  </div>
-                )}
+                      <p className="mt-2 text-sm text-gray-600">
+                        Final product of odds:{" "}
+                        {finalSlip.reduce((acc, g) => acc * g.gameOdd, 1).toFixed(2)}
+                      </p>
+                    </div>
+                  )}
 
-                {error && <p className="text-red-500">{error}</p>}
-              </div>
+                  {error && <p className="text-red-500">{error}</p>}
+                </div>
+
             </ModalBody>
 
             <ModalFooter>

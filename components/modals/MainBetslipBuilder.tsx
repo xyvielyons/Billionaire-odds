@@ -127,9 +127,10 @@ export default function MainBetslipBuilderModal({
               </div>
 
               {/* Output */}
+              {/* Output */}
               <div className="mt-4">
                 {finalSlip && (
-                  <div>
+                  <div className="max-h-[300px] overflow-y-auto pr-2">
                     <h3 className="font-semibold mb-3">
                       Your Slip (target {targetOdd})
                     </h3>
@@ -158,6 +159,7 @@ export default function MainBetslipBuilderModal({
 
                 {error && <p className="text-red-500">{error}</p>}
               </div>
+
             </ModalBody>
 
             <ModalFooter>
